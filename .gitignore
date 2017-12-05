@@ -2,5 +2,6 @@
 /aslr/vuln
 /covert_channel/.idea
 /covert_channel/channel
+/covert_channel/covert_receiver
 /quine/quine1
 /quine/quine2
