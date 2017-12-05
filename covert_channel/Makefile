@@ -1,7 +1,10 @@
-all: covert_receiver
+all: channel covert_receiver
+
+channel:
+	touch channel
 
 clean:
-	rm -f covert_receiver
+	rm -f channel covert_receiver
 
 %: %.c
 	$(CC) $(CFLAGS) -o $@ $<
