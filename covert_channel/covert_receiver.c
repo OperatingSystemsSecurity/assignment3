@@ -7,17 +7,20 @@
 #include <sys/inotify.h>
 #include <sys/stat.h>
 
-#define CHANNEL "./channel"
 #define EVENT_BUFFER_SIZE sizeof(struct inotify_event) + NAME_MAX + 1
 
-int main() {
+int main(int argc, char **args) {
+	if (argc != 2) {
+		printf("usage: %s <sender>\n", args[0]);
+		return 1;
+	}
 	char events[EVENT_BUFFER_SIZE];
 	struct stat *file_stat = malloc(sizeof(struct stat));
 	int inotify_fd = inotify_init();
-	inotify_add_watch(inotify_fd, CHANNEL, IN_ATTRIB);
+	inotify_add_watch(inotify_fd, args[1], IN_ATTRIB);
 	for (;;) {
 		read(inotify_fd, events, EVENT_BUFFER_SIZE);
-		stat(CHANNEL, file_stat);
+		stat(args[1], file_stat);
 		printf("Received: %d\n", file_stat->st_mode & 0777);
 	}
 	free(file_stat);
