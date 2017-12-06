@@ -11,7 +11,7 @@
 
 int main(int argc, char **args) {
 	if (argc != 2) {
-		printf("usage: %s <sender>\n", args[0]);
+		printf("usage: %s <channel_path>\n", args[0]);
 		return 1;
 	}
 	char events[EVENT_BUFFER_SIZE];
